@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Cost Estimator - WAKA FAST</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+    <!-- Global Header & Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">WAKA<span>FAST</span></a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header Banner -->
+    <section class="hero" style="padding: 50px 20px;">
+        <div class="hero-content">
+            <h1>Our Delivery & Errand Services</h1>
+            <p>Transparent pricing, professional runners, and quick turnaround times for all your delivery needs.</p>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        
+        <!-- Detailed Service Cards Grid -->
+        <h2 style="color: var(--dark-gray); margin-bottom: 20px; text-align: center;">Choose Your Service Package</h2>
+        
+        <div class="grid-3">
+            <div class="card">
+                <!-- INSERTED IMAGE SNIPPET -->
+                <div class="service-img-wrap" style="margin-bottom: 15px;">
+                    <img src="https://cdn.pixabay.com/photo/2020/09/25/11/43/delivery-5601275_1280.jpg" alt="Express Package Dispatch" style="width: 100%; height: 200px; object-fit: cover; border-radius: 6px;">
+                </div>
+                <h3 style="color: var(--dark-gray); margin-bottom: 10px;">Same-Day Courier</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Ideal for urgent parcel distribution, important corporate documents, and time-sensitive packages across the city.</p>
+                <p style="font-weight: bold; color: var(--dark-gray); margin-bottom: 15px;">Base Rate: $15.00 CAD</p>
+                <a href="contact.html" class="btn" style="text-align: center; display: block;">Book Courier</a>
+            </div>
+
+            <div class="card">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/bags-1868758_1280.jpg" alt="On-Demand Errand Run" style="width: 100%; height: 200px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3 style="color: var(--dark-gray); margin-bottom: 10px;">On-Demand Errands</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Let us handle your grocery pickups, pharmacy prescription runs, laundry drops, and personal store shopping tasks.</p>
+                <p style="font-weight: bold; color: var(--dark-gray); margin-bottom: 15px;">Base Rate: $20.00 CAD</p>
+                <a href="contact.html" class="btn" style="text-align: center; display: block;">Request Errand</a>
+            </div>
+
+            <div class="card">
+                <img src="https://cdn.pixabay.com/photo/2019/06/17/19/21/delivery-4280548_1280.jpg" alt="Business B2B Support" style="width: 100%; height: 200px; object-fit: cover; border-radius: 6px; margin-bottom: 15px;">
+                <h3 style="color: var(--dark-gray); margin-bottom: 10px;">Business B2B Support</h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Dedicated multi-stop delivery routes and batch dispatching built specifically for local retailers and e-commerce stores.</p>
+                <p style="font-weight: bold; color: var(--dark-gray); margin-bottom: 15px;">Base Rate: $25.00 CAD</p>
+                <a href="contact.html" class="btn" style="text-align: center; display: block;">Partner With Us</a>
+            </div>
+        </div>
+
+        <!-- Interactive Delivery Estimate Panel Component -->
+        <section style="background: var(--white); border: 1px solid var(--border-color); border-radius: 8px; padding: 30px; margin-top: 50px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <h3 style="color: var(--dark-gray); margin-bottom: 15px; text-align: center;">Interactive Delivery Cost Estimator</h3>
+            <p style="text-align: center; color: #666; margin-bottom: 25px; font-size: 14px;">Select your service type and distance range below to calculate a real-time price estimate instantly.</p>
+            
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div class="form-group">
+                    <label for="serviceType">Select Service Type:</label>
+                    <select id="serviceType" class="form-control">
+                        <option value="delivery">Same-Day Courier Delivery ($15 Base)</option>
+                        <option value="errand">On-Demand Errand Run ($20 Base)</option>
+                        <option value="business">Business B2B Support ($25 Base)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="distanceRange">Select Distance Range:</label>
+                    <select id="distanceRange" class="form-control">
+                        <option value="short">Short Range (0 - 5 km) [+ $0]</option>
+                        <option value="medium">Medium Range (5 - 15 km) [+ $10]</option>
+                        <option value="long">Long Range (15+ km) [+ $20]</option>
+                    </select>
+                </div>
+
+                <button type="button" id="calcBtn" class="btn" style="width: 100%; margin-top: 10px;">Calculate Estimate</button>
+
+                <!-- Dynamic Calculation Output Display Box -->
+                <div id="estimateResult" class="calc-result"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>WAKA FAST</h4>
+                <p>Your friendly neighborhood on-demand delivery partner serving Vancouver, Burnaby, Richmond, Surrey, and New Westminster.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li>Email: info@wakafast.local</li>
+                    <li>Phone: +1 (604) 555-WAKA</li>
+                    <li>Service Hours: 7:00 AM - 10:00 PM</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WAKA FAST Delivery Service. All Rights Reserved. Prepared for CSIS 1280.</p>
+        </div>
+    </footer>
+
+</body>
+          </html>
