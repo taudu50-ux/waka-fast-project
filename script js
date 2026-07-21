@@ -1,0 +1,117 @@
+/* ==========================================
+   WAKA FAST MASTER JAVASCRIPT ENGINE
+   ========================================== */
+
+document.addEventListener('DOMContentLoaded', function () {
+    
+    /* ------------------------------------------
+       1. PRICE CALCULATOR LOGIC (services.html)
+       ------------------------------------------ */
+    const calcBtn = document.getElementById('calcBtn');
+    
+    if (calcBtn) {
+        calcBtn.addEventListener('click', function () {
+            const serviceTypeSelect = document.getElementById('serviceType');
+            const distanceRangeSelect = document.getElementById('distanceRange');
+            const estimateResult = document.getElementById('estimateResult');
+
+            if (!serviceTypeSelect || !distanceRangeSelect || !estimateResult) return;
+
+            const serviceValue = serviceTypeSelect.value;
+            const distanceValue = distanceRangeSelect.value;
+
+            // Determine base cost depending on chosen service
+            let baseCost = 15; // default delivery
+            let serviceName = "Same-Day Courier Delivery";
+
+            if (serviceValue === 'errand') {
+                baseCost = 20;
+                serviceName = "On-Demand Errand Run";
+            } else if (serviceValue === 'business') {
+                baseCost = 25;
+                serviceName = "Business B2B Support";
+            }
+
+            // Determine distance surcharge
+            let distanceCost = 0;
+            let distanceLabel = "Short Range (0 - 5 km)";
+
+            if (distanceValue === 'medium') {
+                distanceCost = 10;
+                distanceLabel = "Medium Range (5 - 15 km)";
+            } else if (distanceValue === 'long') {
+                distanceCost = 20;
+                distanceLabel = "Long Range (15+ km)";
+            }
+
+            // Compute total estimate
+            const totalCost = baseCost + distanceCost;
+
+            // Render result feedback box
+            estimateResult.style.display = 'block';
+            estimateResult.innerHTML = `
+                <strong>Estimated Quote:</strong> $${totalCost}.00 CAD<br>
+                <span style="font-size: 13px; font-weight: normal; color: #555;">
+                    Includes: ${serviceName} ($${baseCost}) + ${distanceLabel} (+$${distanceCost})
+                </span>
+            `;
+        });
+    }
+
+    /* ------------------------------------------
+       2. CONTACT FORM VALIDATION LOGIC (contact.html)
+       ------------------------------------------ */
+    const contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function (event) {
+            // Prevent form from submitting by default
+            event.preventDefault();
+
+            const fullName = document.getElementById('fullName');
+            const emailAddress = document.getElementById('emailAddress');
+            const userMessage = document.getElementById('userMessage');
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const messageError = document.getElementById('messageError');
+            const formSuccess = document.getElementById('formSuccess');
+
+            let isValid = true;
+
+            // Reset error displays
+            if (nameError) nameError.style.display = 'none';
+            if (emailError) emailError.style.display = 'none';
+            if (messageError) messageError.style.display = 'none';
+            if (formSuccess) formSuccess.style.display = 'none';
+
+            // Validate Full Name
+            if (fullName && fullName.value.trim() === '') {
+                if (nameError) nameError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Email Address (basic regex check)
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailAddress && !emailRegex.test(emailAddress.value.trim())) {
+                if (emailError) emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Message (minimum 10 characters requirement)
+            if (userMessage && userMessage.value.trim().length < 10) {
+                if (messageError) messageError.style.display = 'block';
+                isValid = false;
+            }
+
+            // If all checks pass successfully
+            if (isValid) {
+                if (formSuccess) {
+                    formSuccess.style.display = 'block';
+                }
+                contactForm.reset();
+            }
+        });
+    }
+
+});
